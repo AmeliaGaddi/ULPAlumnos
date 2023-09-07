@@ -4,12 +4,15 @@
  */
 package ULPAlumnos.Modelos;
 
+import java.util.TreeSet;
+
 /**
  *
  * @author ramrromer
  */
-public class InscripcionObjeto {
+public class InscripcionObjeto implements Comparable<InscripcionObjeto>{
     private int idInscrito, nota, idAlumno, idMateria;
+    public static TreeSet<InscripcionObjeto> listaInscripciones = new TreeSet<>();
 
     public InscripcionObjeto(int idInscrito, int nota, int idAlumno, int idMateria){
         this.idInscrito = idInscrito;
@@ -57,25 +60,13 @@ public class InscripcionObjeto {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.idInscrito;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+      public int compareTo(InscripcionObjeto i){
+        if(idInscrito == i.idInscrito){
+          return 0;
+        }else if(idInscrito > i.idInscrito){
+          return 1;
+        }else{
+          return -1;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final InscripcionObjeto other = (InscripcionObjeto) obj;
-        return this.idInscrito == other.idInscrito;
-    }
-    
+      }  
 }

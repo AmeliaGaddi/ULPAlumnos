@@ -1,8 +1,10 @@
 package ULPAlumnos.Modelos;
 
 import java.util.Objects;
+import java.util.TreeSet;
 
-public class MateriaObjeto {
+public class MateriaObjeto implements Comparable<MateriaObjeto>{
+    public static TreeSet<MateriaObjeto> listaMaterias = new TreeSet<>();
     private int idMateria;
     private String nombre, anio, estado;
 
@@ -52,29 +54,14 @@ public class MateriaObjeto {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.idMateria;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+      public int compareTo(MateriaObjeto m){
+        if(idMateria == m.idMateria){
+          return 0;
+        }else if(idMateria > m.idMateria){
+          return 1;
+        }else{
+          return -1;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final MateriaObjeto other = (MateriaObjeto) obj;
-        if (this.idMateria != other.idMateria) {
-            return false;
-        }
-        return Objects.equals(this.nombre, other.nombre);
-    }
-    
+      }    
     
 }

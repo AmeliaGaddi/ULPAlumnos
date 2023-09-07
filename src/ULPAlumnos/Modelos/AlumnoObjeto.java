@@ -1,8 +1,9 @@
 package ULPAlumnos.Modelos;
 
-import java.util.Objects;
+import java.util.ArrayList;
 
-public class AlumnoObjeto {
+public class AlumnoObjeto implements Comparable<AlumnoObjeto> {
+    public static ArrayList<AlumnoObjeto> listaAlumnos = new ArrayList<>();
     private int idAlumno;
     private String dni, apellido, nombre, fechaNac, estado;
 
@@ -72,30 +73,15 @@ public class AlumnoObjeto {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.idAlumno;
-        hash = 17 * hash + Objects.hashCode(this.dni);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+      public int compareTo(AlumnoObjeto a){
+        if(idAlumno == a.idAlumno){
+          return 0;
+        }else if(idAlumno > a.idAlumno){
+          return 1;
+        }else{
+          return -1;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AlumnoObjeto other = (AlumnoObjeto) obj;
-        if (this.idAlumno != other.idAlumno) {
-            return false;
-        }
-        return Objects.equals(this.dni, other.dni);
-    }
+      }
     
     
 }
