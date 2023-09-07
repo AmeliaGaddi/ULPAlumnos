@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ULPAlumnos.Vistas;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
-import ULPAlumnos.ULPAlumnos;
-import javax.swing.JOptionPane;
+import ULPAlumnos.Modelos.LogicaDB;
 
-/**
- *
- * @author ramrromer
- */
 public class busquedaPorNota extends javax.swing.JFrame {
     Connection c;
     private DefaultTableModel modelo = new DefaultTableModel(){
@@ -20,9 +11,6 @@ public class busquedaPorNota extends javax.swing.JFrame {
             return false;
         }
     };
-    /**
-     * Creates new form busquedaPorNota
-     */
     public busquedaPorNota() {
         this.c=c;
         initComponents();
@@ -161,7 +149,7 @@ public class busquedaPorNota extends javax.swing.JFrame {
         if(!notaAlta.isEmpty() && !notaBaja.isEmpty()){
             if(Integer.parseInt(notaAlta)!=1&&Integer.parseInt(notaAlta)<Integer.parseInt(notaBaja))jTFNota.setText(notaBaja);
             if(Integer.parseInt(notaAlta)>10)jTFNota.setText("10");
-            borrarFilas();
+            
             ejecutarConsulta(notaBaja,notaAlta);    
         }
     }//GEN-LAST:event_jTFNotaKeyReleased
@@ -175,28 +163,21 @@ public class busquedaPorNota extends javax.swing.JFrame {
         if(!notaBaja.isEmpty() && !notaAlta.isEmpty()){
             if(Integer.parseInt(notaBaja)<0)jTFNotaBaja.setText("");
             if(Integer.parseInt(notaBaja)>Integer.parseInt(notaAlta))jTFNotaBaja.setText(notaAlta);
-            borrarFilas();
+            
             ejecutarConsulta(notaBaja,notaAlta);
         }
     }//GEN-LAST:event_jTFNotaBajaKeyReleased
 
     private void jTFNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNotaActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTFNotaActionPerformed
 
     private void jTFNotaBajaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNotaBajaKeyPressed
-        // TODO add your handling code here:cxvb
+        
     }//GEN-LAST:event_jTFNotaBajaKeyPressed
 
     private void jTFNotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNotaKeyPressed
-        
-        
-//        if(evt.getKeyChar()>='0'&& evt.getKeyChar() <= '9'){
-//            jLError.setText("Sólo puede ingresar números");
-//        }else{
-//            jTFNota.setText("10");
-//            jLError.setText("");
-//        }
+       
     }//GEN-LAST:event_jTFNotaKeyPressed
 
     private void jTableAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlumnosMouseClicked
@@ -253,9 +234,9 @@ public class busquedaPorNota extends javax.swing.JFrame {
     private void ejecutarConsulta(String notaBaja, String notaAlta){
        String query;
        query = "select * from alumno join inscripcion on alumno.idAlumno=inscripcion.idAlumno join materia on inscripcion.idMateria = materia.idMateria where inscripcion.nota BETWEEN "+notaBaja+" AND "+notaAlta;
-       ResultSet resultado=ULPAlumnos.ejecutarConsulta(query);
-       
+       ResultSet resultado=LogicaDB.ejecutarConsulta(query);
        try{
+           borrarFilas();
            while(resultado.next())modelo.addRow(new Object[]{resultado.getInt("dni"),resultado.getString("apellido"),resultado.getString("nombre"),resultado.getString("materia.nombre"),resultado.getInt("nota")});
        }catch(Exception e){
            System.out.println("Error: "+e.getMessage());
@@ -265,13 +246,9 @@ public class busquedaPorNota extends javax.swing.JFrame {
     private void borrarFilas(){
         int f=jTableAlumnos.getRowCount()-1;
         System.out.println("Tabla RowCount = "+f);
-        for(;f>0;f--){
+        for(;f>=0;f--){ //maior o igual
             modelo.removeRow(f);
         }
-//        if(jTableAlumnos.getValueAt(0, 0)!=null){
-//            modelo.removeRow(0);
-//            System.out.println("Borramos la fila que faltaba!");
-//        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,27 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package ULPAlumnos.Modelos;
 
-package ULPAlumnos;
+import static ULPAlumnos.ULPAlumnos.con;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-import ULPAlumnos.Vistas.busquedaPorNota;
-import ULPAlumnos.Vistas.agregarInscripcion;
-import java.sql.*;
-import javax.swing.JOptionPane;
-
-public class ULPAlumnos {
-    private static Miconexion co;
-    public static Connection con;
-   
-    public static void main(String[] args) {
-        co = new Miconexion("universidadULP");
-        con = co.conectar();
-        System.out.println("OK");
-        
-        busquedaPorNota busqueda = new busquedaPorNota();
-        busqueda.setVisible(true);
-        agregarInscripcion ventana = new agregarInscripcion();
-        ventana.setVisible(true);
-        
-    }
-    
+/**
+ *
+ * @author ramrromer
+ */
+public class LogicaDB {
     
     public static ResultSet ejecutarConsulta(String query){
         ResultSet resultado = null;
@@ -43,5 +34,4 @@ public class ULPAlumnos {
         }
       return resultado;
     }
-    
 }
