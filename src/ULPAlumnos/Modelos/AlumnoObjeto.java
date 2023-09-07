@@ -1,11 +1,14 @@
 package ULPAlumnos.Modelos;
 
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class AlumnoObjeto implements Comparable<AlumnoObjeto> {
-    public static ArrayList<AlumnoObjeto> listaAlumnos = new ArrayList<>();
+    public static TreeSet<AlumnoObjeto> listaAlumnos = new TreeSet<>();
     private int idAlumno;
     private String dni, apellido, nombre, fechaNac, estado;
+
+    public AlumnoObjeto() {
+    }
 
     public AlumnoObjeto(String dni, String apellido, String nombre, String fechaNac, String estado) {
         this.dni = dni;

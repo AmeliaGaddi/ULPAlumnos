@@ -181,10 +181,8 @@ public class busquedaPorNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFNotaKeyPressed
 
     private void jTableAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlumnosMouseClicked
-        int filaElegida = jTableAlumnos.getSelectedRow();
-        int rowCount=jTableAlumnos.getRowCount()-1;
-        System.out.println("Clicked on: "+filaElegida);
-        System.out.println("RowCount on: "+rowCount);
+//        int filaElegida = jTableAlumnos.getSelectedRow();
+//        System.out.println("Clicked on: "+filaElegida);
     }//GEN-LAST:event_jTableAlumnosMouseClicked
 
     /**
@@ -237,7 +235,14 @@ public class busquedaPorNota extends javax.swing.JFrame {
        ResultSet resultado=LogicaDB.ejecutarConsulta(query);
        try{
            borrarFilas();
-           while(resultado.next())modelo.addRow(new Object[]{resultado.getInt("dni"),resultado.getString("apellido"),resultado.getString("nombre"),resultado.getString("materia.nombre"),resultado.getInt("nota")});
+           while(resultado.next())
+               modelo.addRow(new Object[]{
+                   resultado.getInt("dni"),
+                   resultado.getString("apellido"),
+                   resultado.getString("nombre"),
+                   resultado.getString("materia.nombre"),
+                   resultado.getInt("nota")
+               });
        }catch(Exception e){
            System.out.println("Error: "+e.getMessage());
        }

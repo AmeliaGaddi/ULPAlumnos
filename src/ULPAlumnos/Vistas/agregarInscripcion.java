@@ -6,7 +6,7 @@ package ULPAlumnos.Vistas;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
-import ULPAlumnos.ULPAlumnos;
+import ULPAlumnos.Modelos.LogicaDB;
 import javax.swing.DefaultListModel;
 
 /**
@@ -248,7 +248,7 @@ public class agregarInscripcion extends javax.swing.JFrame {
        String query = "INSERT INTO inscripcion VALUES (null,"+nota+", "+idAlumno+", "+idMateria+")";
        int resultado= -99;
        try{
-            resultado = ULPAlumnos.ejecutarUpdate(query);
+            resultado = LogicaDB.ejecutarUpdate(query);
        }catch(Exception e){
            System.out.println("Error: "+e.getMessage());
        }
@@ -261,7 +261,7 @@ public class agregarInscripcion extends javax.swing.JFrame {
         String query = "";
         if(firstRun){
             query = "SELECT * FROM alumno";
-            resultado=ULPAlumnos.ejecutarConsulta(query);
+            resultado=LogicaDB.ejecutarConsulta(query);
             try{
                 while(resultado.next()){
                     alumno = "";
@@ -277,7 +277,7 @@ public class agregarInscripcion extends javax.swing.JFrame {
             jLAlumno.setModel(model);
         }else{
             query = "SELECT * FROM alumno WHERE apellido LIKE '%"+busqueda+"%' OR nombre LIKE '%"+busqueda+"%' GROUP BY apellido";
-            resultado=ULPAlumnos.ejecutarConsulta(query);
+            resultado=LogicaDB.ejecutarConsulta(query);
             try{
                 while(resultado.next()){
                         alumno = "";
@@ -300,7 +300,7 @@ public class agregarInscripcion extends javax.swing.JFrame {
     
     private void cargarMaterias(){
         String query = "SELECT * FROM materia ORDER BY nombre";
-            resultado=ULPAlumnos.ejecutarConsulta(query);
+            resultado=LogicaDB.ejecutarConsulta(query);
             try{
                 while(resultado.next()){
                     listaIdMaterias.put(resultado.getString("nombre"), resultado.getInt("idMateria"));
