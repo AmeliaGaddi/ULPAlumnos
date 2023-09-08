@@ -21,8 +21,6 @@ public class ULPAlumnos {
         boolean dbok = false;
         ResultSet respuesta = null;
         try{
-            
-            System.out.println("a ver");
             respuesta = LogicaDB.ejecutarConsulta("SELECT * FROM alumno");
             dbok = respuesta!=null? true : false;
         }catch(Exception e){

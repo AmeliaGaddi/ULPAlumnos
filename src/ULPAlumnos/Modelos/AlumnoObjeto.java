@@ -27,6 +27,7 @@ public class AlumnoObjeto implements Comparable<AlumnoObjeto> {
         this.estado = estado;
     }
 
+    //getters setters
     public int getIdAlumno() {
         return idAlumno;
     }

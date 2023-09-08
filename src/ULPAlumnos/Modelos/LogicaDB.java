@@ -24,6 +24,7 @@ public class LogicaDB {
         }
       return resultado;
     }
+    
     public static int ejecutarUpdate(String query){
         int resultado=-1618;
         try{
